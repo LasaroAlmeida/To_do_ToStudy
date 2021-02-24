@@ -130,6 +130,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        name_jTextField1.setBackground(new java.awt.Color(240, 230, 140));
         name_jTextField1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         name_jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         name_jTextField1.setText("Nome...");
@@ -158,6 +159,7 @@ public class Login extends javax.swing.JFrame {
 
         err_jLabel3.setText(" ");
 
+        password_jPasswordField1.setBackground(new java.awt.Color(240, 230, 140));
         password_jPasswordField1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         password_jPasswordField1.setForeground(new java.awt.Color(153, 153, 153));
         password_jPasswordField1.setText("Senha...");
@@ -175,6 +177,11 @@ public class Login extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 password_jPasswordField1MouseExited(evt);
+            }
+        });
+        password_jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                password_jPasswordField1KeyPressed(evt);
             }
         });
 
@@ -202,7 +209,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(password_jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(err_jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +228,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -370,6 +377,11 @@ public class Login extends javax.swing.JFrame {
             password_jPasswordField1.setFont(new java.awt.Font("Arial", 1, 15));
         }
     }//GEN-LAST:event_password_jPasswordField1FocusGained
+
+    private void password_jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_password_jPasswordField1KeyPressed
+        // TODO add your handling code here:
+        key_Event(evt.getKeyCode());
+    }//GEN-LAST:event_password_jPasswordField1KeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel err_jLabel3;

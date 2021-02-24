@@ -80,6 +80,7 @@ public class AddAtividade extends javax.swing.JFrame {
             }
         });
 
+        subjects_jTextField1.setBackground(new java.awt.Color(240, 230, 140));
         subjects_jTextField1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         subjects_jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         subjects_jTextField1.setText("Titulo...");
@@ -105,6 +106,7 @@ public class AddAtividade extends javax.swing.JFrame {
 
         jTextField4.setText("Ano..");
 
+        jTextField5.setBackground(new java.awt.Color(240, 230, 140));
         jTextField5.setText("Dia...");
 
         jTextField6.setText("Início...");
@@ -201,7 +203,7 @@ public class AddAtividade extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+        dispose();
         new Menu().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

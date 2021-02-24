@@ -39,6 +39,7 @@ public class Register extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
+        err_jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -92,6 +93,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setBackground(new java.awt.Color(240, 230, 140));
         jTextField1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setText("Nome...");
@@ -113,6 +115,7 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setBackground(new java.awt.Color(240, 230, 140));
         jTextField2.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
         jTextField2.setText("Senha...");
@@ -133,6 +136,8 @@ public class Register extends javax.swing.JFrame {
             }
         });
 
+        err_jLabel3.setText(" ");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -142,7 +147,8 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                    .addComponent(err_jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
 
@@ -155,9 +161,11 @@ public class Register extends javax.swing.JFrame {
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
+                .addGap(18, 18, 18)
+                .addComponent(err_jLabel3)
+                .addGap(44, 44, 44)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jTextField1, jTextField2});
@@ -184,6 +192,9 @@ public class Register extends javax.swing.JFrame {
     private void jTextField1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseEntered
         // TODO add your handling code here:
         jTextField1.setBackground(Color.white);
+        if (!err_jLabel3.getText().equals(" ")) {
+            err_jLabel3.setText(" ");
+        }
 
     }//GEN-LAST:event_jTextField1MouseEntered
 
@@ -195,6 +206,9 @@ public class Register extends javax.swing.JFrame {
     private void jTextField2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseEntered
         // TODO add your handling code here:
         jTextField2.setBackground(Color.white);
+        if (!err_jLabel3.getText().equals(" ")) {
+            err_jLabel3.setText(" ");
+        }
     }//GEN-LAST:event_jTextField2MouseEntered
 
     private void jTextField2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseExited
@@ -259,30 +273,43 @@ public class Register extends javax.swing.JFrame {
             return 1;
         }
     }
+
+    private boolean filled_fields() {
+        return !jTextField1.getText().equals("") && !jTextField1.getText().equals("Nome...") && !jTextField2.getText().equals("") && !jTextField2.getText().equals("Senha...");
+
+    }
+
+    private void printErr(String erro) {
+        err_jLabel3.setText(erro);
+        err_jLabel3.setFont(new Font("Ink Free", Font.BOLD, 15));
+        err_jLabel3.setForeground(Color.orange);
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int aux = _verificaSenha();
-        
-        if (aux == 1) {
-            Usuario novo_usuario = new Usuario(jTextField1.getText(), jTextField2.getText());
-            ImageIcon icon = new ImageIcon("D:\\Documentos\\NetBeansProjects\\To_do_ToStudy\\icon\\confirm.png");
-            JOptionPane.showMessageDialog(null, "Registro efetuado com sucesso", "", JOptionPane.INFORMATION_MESSAGE, icon);
-            this.dispose();
-            new Login().setVisible(true);
-            
+        if (!filled_fields()) {
+            err_jLabel3.setText("Preencha todos os campos");
+            printErr("Preencha todos os campos");
         } else {
-            
-            ImageIcon icon = new ImageIcon("D:\\Documentos\\NetBeansProjects\\To_do_ToStudy\\icon\\cancel.png");
-            if (aux == -2) {
-                JOptionPane.showMessageDialog(null, "Senha muito curta. ", "ERRO", JOptionPane.WARNING_MESSAGE, icon);
-            } else if (aux == -1) {
-                JOptionPane.showMessageDialog(null, "A senha nao pode ser igual ao nome", "ERRO", JOptionPane.WARNING_MESSAGE, icon);
-            } else {
-                JOptionPane.showMessageDialog(null, "Escolha uma senha mais dificil", "ERRO", JOptionPane.WARNING_MESSAGE, icon);
-            }
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
+            int aux = _verificaSenha();
 
+            if (aux == 1) {
+                Usuario novo_usuario = new Usuario(jTextField1.getText(), jTextField2.getText());
+                JOptionPane.showMessageDialog(null, "Registro efetuado com sucesso", "", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                new Login().setVisible(true);
+
+            } else {
+
+                if (aux == -2) {
+                    printErr("Senha muito curta. ");
+                } else if (aux == -1) {
+                    printErr("A senha nao pode ser igual ao nome");
+                } else {
+                    printErr("Escolha uma senha mais dificil");
+                }
+            }
+    }//GEN-LAST:event_jButton2ActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
@@ -319,6 +346,7 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel err_jLabel3;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
